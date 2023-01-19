@@ -49,8 +49,8 @@ public class ProductController {
     }
 
     @GetMapping("/list/{categoryId}")
-    public List<Product> getProductByCategory(@PathVariable Integer category_id){
-        return productService.findAllProductCategory(category_id);
-}
+    public List<Product> getProductByCategory(@PathVariable Integer categoryId){
+        return productService.findAllProductCategory(categoryId);
+    }
 
 }

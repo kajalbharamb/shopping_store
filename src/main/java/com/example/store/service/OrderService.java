@@ -10,6 +10,7 @@ import com.example.store.repository.SalesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,7 +25,7 @@ public class OrderService {
     private SalesRepository salesRepository;
    
 
-    public Product placingorder(OrderDto orderDto) {
+    public Product postorder(OrderDto orderDto) {
         Optional<Product> optionalProduct=productRepository.findById(orderDto.getProductId());
         Product product=optionalProduct.get();
         product.setName(product.getName());
@@ -33,6 +34,11 @@ public class OrderService {
         product.setDiscount(product.getDiscount());
         product.setSellingprice(product.getSellingprice());
         productRepository.save(product);
+        Sales sales = null;
+        sales.setProductId(orderDto.getProductId());
+        sales.setUserId(orderDto.getUserId());
+        sales.setSoldStock(orderDto.getQuantity());
+        salesRepository.save(sales);
         return product;
     }
        }

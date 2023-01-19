@@ -22,6 +22,61 @@ public class Product {
     private long originalPrice;
     private int discount;
 
+
+
+    //Many to one relationship
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
+    Category category;
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+    public Integer getId() {
+        return Id;
+    }
+
+    public void setId(Integer id) {
+        Id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public long getSellingprice() {
+        return sellingprice;
+    }
+
+    public void setSellingprice(long sellingprice) {
+        this.sellingprice = sellingprice;
+    }
+
+    public int getNoInStock() {
+        return noInStock;
+    }
+
+    public void setNoInStock(int noInStock) {
+        this.noInStock = noInStock;
+    }
+
+    public long getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public void setOriginalPrice(long originalPrice) {
+        this.originalPrice = originalPrice;
+    }
+
     public Category getCategory() {
         return category;
     }
@@ -29,10 +84,4 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
-
-    //Many to one relationship
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    Category category;
-
 }

@@ -17,8 +17,6 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
-    @Autowired
-    private CategoryRepository categoryRepository;
     public void createProduct(ProductDto productDto, Category category) {
         Product product=new Product();
         product.setName(productDto.getName());
@@ -60,8 +58,8 @@ public class ProductService {
     }
 
 
-    public List<Product> findAllProductCategory(Integer category_id) {
-        return categoryRepository.findProductByCategory(category_id);
+    public List<Product> findAllProductCategory(Integer categoryId) {
+        return productRepository.findProductByCategory(categoryId);
     }
 
 }

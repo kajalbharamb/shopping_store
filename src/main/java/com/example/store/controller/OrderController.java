@@ -19,7 +19,7 @@ public class OrderController {
 
     @PostMapping("/placeOrder")
     private Product placeOrder(@RequestBody OrderDto orderDto){
-        return orderService.placingorder(orderDto);
+        return orderService.postorder(orderDto);
     }
 
 }

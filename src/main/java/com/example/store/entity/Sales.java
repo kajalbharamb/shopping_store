@@ -16,15 +16,13 @@ import javax.validation.constraints.NotNull;
 public class Sales {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int salesid;
+    private int salesId;
     @NotNull
     private int productId;
     @NotNull
-    private String productName;
-    @NotNull
     private String userId;
     @NotNull
-    private int Soldstock;
+    private int soldStock;
 
 
 }
