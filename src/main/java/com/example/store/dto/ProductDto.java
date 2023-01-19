@@ -17,11 +17,12 @@ public class ProductDto {
     @NotNull
     private String name;
     @NotNull
-    private long sellingprice;
+    private long sellingPrice;
     @NotNull
     private int noInStock;
     @NotNull
     private long originalPrice;
     @NotNull
     private int discount;
+
 }

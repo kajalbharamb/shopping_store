@@ -1,5 +1,6 @@
 package com.example.store.controller;
 
+import com.example.store.dto.Login;
 import com.example.store.entity.Category;
 import com.example.store.entity.Product;
 import com.example.store.reponse.ApiResponse;
@@ -28,7 +29,7 @@ public class CategoryController {
     }
 
     @GetMapping("/list")
-    public List<Category> displayCategory(){return categoryService.findCategory();
+    public List<Category> displayCategory(Login login){return categoryService.findCategory(login);
     }
 
 

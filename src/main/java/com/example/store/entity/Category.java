@@ -1,6 +1,7 @@
 package com.example.store.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "category")
@@ -8,9 +9,8 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  Integer id;
-
+    @NotNull
     private String categoryName;
-
     public Integer getId() {
         return id;
     }

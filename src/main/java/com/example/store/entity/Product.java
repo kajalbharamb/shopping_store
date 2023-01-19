@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.hql.internal.ast.tree.IdentNode;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,10 +17,15 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Id;
+    @NotNull
     private String name;
-    private long sellingprice;
+    @NotNull
+    private long sellingPrice;
+    @NotNull
     private int noInStock;
+    @NotNull
     private long originalPrice;
+    @NotNull
     private int discount;
 
 
@@ -53,12 +59,12 @@ public class Product {
         this.name = name;
     }
 
-    public long getSellingprice() {
-        return sellingprice;
+    public long getSellingPrice() {
+        return sellingPrice;
     }
 
-    public void setSellingprice(long sellingprice) {
-        this.sellingprice = sellingprice;
+    public void setSellingPrice(long sellingprice) {
+        this.sellingPrice = sellingprice;
     }
 
     public int getNoInStock() {

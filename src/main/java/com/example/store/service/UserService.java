@@ -1,18 +1,20 @@
 package com.example.store.service;
 import com.example.store.dto.Login;
+import com.example.store.entity.ActivityHistory;
 import com.example.store.entity.User;
+import com.example.store.repository.AcitvityHistoryRepository;
 import com.example.store.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 @Service
 public class UserService {
 
-    User user;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private AcitvityHistoryRepository acitvityHistoryRepository;
 
     public User addUser(User user){
         return userRepository.save(user);
@@ -42,6 +44,7 @@ public class UserService {
 
     public String loginrequired(Login login){
         if(  userRepository.findById(login.getEmail()).get().getEmail().equals(login.getEmail())&&userRepository.findById(login.getEmail()).get().getPassword().equals(login.getPassword())){
+            acitvityHistoryRepository.save(new ActivityHistory(login.getEmail(),"User Logged IN"));
             return "user logged in";
         }
         else {

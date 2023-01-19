@@ -1,5 +1,6 @@
 package com.example.store.controller;
 
+import com.example.store.dto.Login;
 import com.example.store.dto.ProductDto;
 import com.example.store.entity.Category;
 import com.example.store.entity.Product;
@@ -44,13 +45,13 @@ public class ProductController {
     }
 
     @GetMapping("/list")
-    public List<Product> getProducts() {
-     return productService.findAllProducts();
+    public List<Product> getProducts(Login login) {
+     return productService.findAllProducts(login);
     }
 
     @GetMapping("/list/{categoryId}")
-    public List<Product> getProductByCategory(@PathVariable Integer categoryId){
-        return productService.findAllProductCategory(categoryId);
+    public List<Product> getProductByCategory(@PathVariable Integer categoryId,Login login) throws Exception {
+        return productService.findAllProductCategory(categoryId,login);
     }
 
 }

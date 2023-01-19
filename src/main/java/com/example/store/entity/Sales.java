@@ -20,9 +20,14 @@ public class Sales {
     @NotNull
     private int productId;
     @NotNull
+    private String productName;
+    @NotNull
+    private int productSellingPrice;
+    @NotNull
     private String userId;
     @NotNull
     private int soldStock;
+
 
 
 }
