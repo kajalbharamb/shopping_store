@@ -12,17 +12,17 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class ProductDto {
     private int id;
-    @NotNull
+    @NotNull(message = "Required")
     private Integer categoryId;
-    @NotNull
+    @NotNull(message = "Required")
     private String name;
-    @NotNull
+    @NotNull(message = "Required")
     private long sellingPrice;
-    @NotNull
+    @NotNull(message = "Required")
     private int noInStock;
-    @NotNull
+    @NotNull(message = "Required")
     private long originalPrice;
-    @NotNull
+    @NotNull(message = "Required")
     private int discount;
 
 }

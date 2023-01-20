@@ -17,15 +17,15 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Id;
-    @NotNull
+    @NotNull(message = "Required")
     private String name;
-    @NotNull
+    @NotNull(message = "Required")
     private long sellingPrice;
-    @NotNull
+    @NotNull(message = "Required")
     private int noInStock;
-    @NotNull
+    @NotNull(message = "Required")
     private long originalPrice;
-    @NotNull
+    @NotNull(message = "Required")
     private int discount;
 
 

@@ -11,13 +11,13 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Entity
 public class User {
-    @NotNull
+    @NotNull(message = "User name is mandatory")
     private String name;
     @Id
     private String email;
-    @NotNull
+    @NotNull(message = "Required")
     private String password;
-    @NotNull
+    @NotNull(message = "Required")
     private String role;
 
 }

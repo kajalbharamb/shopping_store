@@ -1,9 +1,15 @@
 package com.example.store.dto;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class OrderDto
 {
+    @NotNull(message = "Required")
     private int productId;
+    @NotEmpty(message = "Required")
     private String UserId;
+    @NotNull(message = "Required")
     private int quantity;
 
     public OrderDto(int productId, String userId, int quantity) {

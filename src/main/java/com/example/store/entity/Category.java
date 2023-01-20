@@ -1,6 +1,7 @@
 package com.example.store.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -9,7 +10,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  Integer id;
-    @NotNull
+    @NotEmpty(message = "Category name must not be empty")
     private String categoryName;
     public Integer getId() {
         return id;

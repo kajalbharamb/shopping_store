@@ -32,8 +32,6 @@ public class OrderService {
     public String postorder(OrderDto orderDto, Login login) {
         Optional<Product> optionalProduct=productRepository.findById(orderDto.getProductId());
         Product product=optionalProduct.get();
-
-        acitvityHistoryRepository.save(new ActivityHistory(login.getEmail(),"user has order the product"+product.getName()));
         int leftStock = product.getNoInStock() - orderDto.getQuantity();
         if(leftStock>0){
         product.setName(product.getName());
@@ -49,6 +47,7 @@ public class OrderService {
         sales.setProductName(product.getName());
         sales.setProductSellingPrice((int) product.getSellingPrice());
         salesRepository.save(sales);
+        acitvityHistoryRepository.save(new ActivityHistory(login.getEmail(),"user has order the product"+product.getName()));
         return "Order Placed";
         }
         else{

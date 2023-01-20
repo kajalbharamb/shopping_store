@@ -1,6 +1,11 @@
 package com.example.store.dto;
+
+import javax.validation.constraints.NotEmpty;
+
 public class Login {
+    @NotEmpty(message = "Required")
     private String email;
+    @NotEmpty(message = "Required")
     private String password;
 
     public String getPassword() {

@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -17,15 +18,15 @@ public class Sales {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int salesId;
-    @NotNull
+    @NotNull(message = "Required")
     private int productId;
-    @NotNull
+    @NotEmpty(message = "Product name required")
     private String productName;
-    @NotNull
+    @NotNull(message = "Required")
     private int productSellingPrice;
-    @NotNull
+    @NotEmpty(message = "Required")
     private String userId;
-    @NotNull
+    @NotNull(message = "Required")
     private int soldStock;
 
 

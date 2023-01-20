@@ -5,6 +5,7 @@ import com.example.store.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -14,13 +15,16 @@ public class LoginController {
     private UserService service;
 
     @PostMapping("/user")
-    public User saveUser(@RequestBody User user) {
-        return service.addUser(user);
-    }
+    public User saveUser(@Valid @RequestBody User user) { return service.addUser(user); }
 
     @PostMapping("/users")
-    public List<User> saveUsers(@RequestBody List<User> users) {
+    public List<User> saveUsers(@Valid @RequestBody List<User> users) {
         return service.addUsers(users);
+    }
+
+    @PostMapping("/loginByEmailPass")
+    public String login(@Valid @RequestBody Login login) {
+        return service.loginrequired(login);
     }
 
     @GetMapping("/users")
@@ -48,9 +52,5 @@ public class LoginController {
         return service.delete(id);
     }
 
-    @PostMapping("/loginByEmailPass")
-    public String login(@RequestBody Login login) {
-        return service.loginrequired(login);
-    }
 
 }

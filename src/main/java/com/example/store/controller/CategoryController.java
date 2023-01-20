@@ -29,12 +29,7 @@ public class CategoryController {
     }
 
     @GetMapping("/list")
-    public List<Category> displayCategory(Login login){return categoryService.findCategory(login);
+    public ResponseEntity<List<Category>> displayCategory(Login login){
+        return new ResponseEntity<>(categoryService.findCategory(login), HttpStatus.ACCEPTED);
     }
-
-
-
-
-
-
 }
