@@ -1,8 +1,5 @@
 package com.example.store.dto;
-
 import lombok.*;
-import org.springframework.context.annotation.Primary;
-
 import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
@@ -11,18 +8,19 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 public class ProductDto {
+
     private int id;
-    @NotNull(message = "Required")
+    @NotNull(message = "Required categoryId")
     private Integer categoryId;
-    @NotNull(message = "Required")
+    @NotNull(message = "Required Product Name")
     private String name;
-    @NotNull(message = "Required")
+    @NotNull(message = "Required Selling Price")
     private long sellingPrice;
-    @NotNull(message = "Required")
+    @NotNull(message = "Required NoInStock")
     private int noInStock;
-    @NotNull(message = "Required")
+    @NotNull(message = "Required Original Price")
     private long originalPrice;
-    @NotNull(message = "Required")
+    @NotNull(message = "Required Discount")
     private int discount;
 
 }

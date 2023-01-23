@@ -3,9 +3,10 @@ package com.example.store.dto;
 import javax.validation.constraints.NotEmpty;
 
 public class Login {
-    @NotEmpty(message = "Required")
+
+    @NotEmpty(message = "Required Email")
     private String email;
-    @NotEmpty(message = "Required")
+    @NotEmpty(message = "Required Password")
     private String password;
 
     public String getPassword() {

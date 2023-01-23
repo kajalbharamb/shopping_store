@@ -1,18 +1,13 @@
 package com.example.store.service;
-
 import com.example.store.dto.Login;
 import com.example.store.dto.ProductDto;
 import com.example.store.entity.ActivityHistory;
 import com.example.store.entity.Category;
 import com.example.store.entity.Product;
 import com.example.store.repository.AcitvityHistoryRepository;
-import com.example.store.repository.CategoryRepository;
 import com.example.store.repository.ProductRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,8 +31,7 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public List<Product> findAllProducts(Login login){
-        acitvityHistoryRepository.save(new ActivityHistory(login.getEmail(),"user has viewed all the products"));
+    public List<Product> findAllProducts(){
       return productRepository.findAll();
     }
 

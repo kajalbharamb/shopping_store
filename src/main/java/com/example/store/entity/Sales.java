@@ -7,28 +7,25 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-@Entity
+
 @Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "sales")
+@Entity(name = "sales")
 public class Sales {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int salesId;
-    @NotNull(message = "Required")
+    @NotNull(message = "Required ProductId")
     private int productId;
     @NotEmpty(message = "Product name required")
     private String productName;
-    @NotNull(message = "Required")
+    @NotNull(message = "Required Product Selling Price")
     private int productSellingPrice;
-    @NotEmpty(message = "Required")
+    @NotEmpty(message = "Required UserId")
     private String userId;
-    @NotNull(message = "Required")
+    @NotNull(message = "Required SoldStock")
     private int soldStock;
-
-
-
 }

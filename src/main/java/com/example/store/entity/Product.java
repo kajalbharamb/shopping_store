@@ -1,10 +1,7 @@
 package com.example.store.entity;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.hql.internal.ast.tree.IdentNode;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -17,19 +14,16 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Id;
-    @NotNull(message = "Required")
+    @NotNull(message = "Required Product name")
     private String name;
-    @NotNull(message = "Required")
+    @NotNull(message = "Required Selling Price")
     private long sellingPrice;
-    @NotNull(message = "Required")
+    @NotNull(message = "Required NoInStock")
     private int noInStock;
-    @NotNull(message = "Required")
+    @NotNull(message = "Required Original Price")
     private long originalPrice;
-    @NotNull(message = "Required")
+    @NotNull(message = "Required Discount")
     private int discount;
-
-
-
     //Many to one relationship
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")

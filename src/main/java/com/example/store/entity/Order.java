@@ -15,11 +15,11 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotNull(message = "Required")
+    @NotNull(message = "Required ProductId")
     private int product_id;
-    @NotNull(message = "Required")
+    @NotNull(message = "Required UserId")
     private String user_id;
-    @NotNull(message = "Required")
+    @NotNull(message = "Required Quantity")
     private int quantity;
 
 

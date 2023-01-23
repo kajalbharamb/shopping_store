@@ -1,5 +1,6 @@
 package com.example.store.controller;
 import com.example.store.entity.ActivityHistory;
+import com.example.store.reponse.ActivityResponse;
 import com.example.store.service.ActivityHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class ActivityHistoryController {
         return new ResponseEntity<>(acitivityHistoryService.getActivityHistory(), HttpStatus.OK) ;
     }
 
-    @PostMapping("/list/{userId}")
+    @GetMapping("/list/{userId}")
     public ResponseEntity<List<ActivityHistory>> getActivityListByUserId(@PathVariable String userId){
         return new ResponseEntity<>(acitivityHistoryService.getActivityHistoryByUserId(userId), HttpStatus.OK) ;
     }

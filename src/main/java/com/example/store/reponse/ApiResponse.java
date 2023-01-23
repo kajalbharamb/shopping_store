@@ -1,17 +1,28 @@
 package com.example.store.reponse;
+import lombok.*;
+import java.util.List;
 
+@Getter
+@Setter
+@Data
+@NoArgsConstructor
 public class ApiResponse {
-    private String statusCode;
-    private final String message;
+    private int statusCode;
+    private  String message;
+    private List<Object> details;
 
-
-    public ApiResponse(String statusCode, String message) {
+    public ApiResponse(int statusCode, String message) {
         this.statusCode = statusCode;
         this.message = message;
     }
 
+    public ApiResponse(int statusCode, String message, List<Object> details) {
+        this.statusCode = statusCode;
+        this.message = message;
+        this.details = details;
+    }
 
-    public String getStatusCode() {
+    public int getStatusCode() {
         return statusCode;
     }
 

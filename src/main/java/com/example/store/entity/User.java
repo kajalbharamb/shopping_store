@@ -15,9 +15,9 @@ public class User {
     private String name;
     @Id
     private String email;
-    @NotNull(message = "Required")
+    @NotNull(message = "Required Password")
     private String password;
-    @NotNull(message = "Required")
+    @NotNull(message = "Required Role")
     private String role;
 
 }

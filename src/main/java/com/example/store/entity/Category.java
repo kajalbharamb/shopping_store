@@ -12,6 +12,7 @@ public class Category {
     private  Integer id;
     @NotEmpty(message = "Category name must not be empty")
     private String categoryName;
+
     public Integer getId() {
         return id;
     }

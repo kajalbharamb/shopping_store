@@ -2,7 +2,6 @@ package com.example.store.controller;
 
 import com.example.store.dto.Login;
 import com.example.store.entity.Category;
-import com.example.store.entity.Product;
 import com.example.store.reponse.ApiResponse;
 import com.example.store.repository.CategoryRepository;
 import com.example.store.service.CategoryService;
@@ -25,7 +24,7 @@ public class CategoryController {
     @PostMapping("/create")
     public ResponseEntity<ApiResponse> createCategory(@RequestBody Category category){
         categoryService.createCategory(category);
-        return new ResponseEntity<>(new ApiResponse("201","created a new category"), HttpStatus.CREATED);
+        return new ResponseEntity<>(new ApiResponse(202, "created a new category"), HttpStatus.CREATED);
     }
 
     @GetMapping("/list")
