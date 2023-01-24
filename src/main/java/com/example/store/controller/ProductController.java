@@ -1,9 +1,9 @@
 package com.example.store.controller;
-import com.example.store.dto.Login;
-import com.example.store.dto.ProductDto;
+import com.example.store.dto.request.LoginDto;
+import com.example.store.dto.request.ProductDto;
+import com.example.store.dto.response.ProductResponse;
 import com.example.store.entity.Category;
-import com.example.store.entity.Product;
-import com.example.store.reponse.ApiResponse;
+import com.example.store.dto.response.ApiResponse;
 import com.example.store.repository.CategoryRepository;
 import com.example.store.repository.ProductRepository;
 import com.example.store.service.ProductService;
@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
+
 import java.util.Optional;
 
 @RestController
@@ -52,14 +52,14 @@ public class ProductController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<Product>> getProducts() {
+    public ResponseEntity<ProductResponse> getProducts() {
 
-        return new ResponseEntity<>(productService.findAllProducts(),HttpStatus.OK);
+        return new ResponseEntity<>(new ProductResponse(HttpStatus.OK.value(), "List of products ",productService.findAllProducts()),HttpStatus.OK);
     }
 
     @GetMapping("/list/{categoryId}")
-    public ResponseEntity<List<Product>> getProductByCategory(@PathVariable Integer categoryId,@RequestBody Login login) throws Exception {
-        return new ResponseEntity<>(productService.findAllProductCategory(categoryId,login),HttpStatus.ACCEPTED);
+    public ResponseEntity<ProductResponse> getProductByCategory(@PathVariable Integer categoryId, @RequestBody LoginDto loginDto) throws Exception {
+        return new ResponseEntity<>(new ProductResponse(HttpStatus.ACCEPTED.value(), "Product of particular category",productService.findAllProductCategory(categoryId, loginDto)),HttpStatus.ACCEPTED);
     }
 
 }

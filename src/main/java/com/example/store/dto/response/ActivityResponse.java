@@ -1,9 +1,9 @@
-package com.example.store.reponse;
+package com.example.store.dto.response;
 import com.example.store.entity.ActivityHistory;
 
 import java.util.List;
 
-public class ActivityResponse extends ApiResponse{
+public class ActivityResponse extends ApiResponse {
     private List<ActivityHistory> activityHistories;
 
     public ActivityResponse(int statusCode, String message, List<ActivityHistory> activityHistories) {

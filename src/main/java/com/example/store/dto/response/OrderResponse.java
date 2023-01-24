@@ -1,11 +1,11 @@
-package com.example.store.reponse;
+package com.example.store.dto.response;
 
 import com.example.store.entity.Product;
 
-public class ProductResponse extends ApiResponse{
+public class OrderResponse extends ApiResponse {
     private Product product;
 
-    public ProductResponse(int statusCode, String message, Product product) {
+    public OrderResponse(int statusCode, String message, Product product) {
         super(statusCode,message);
         this.product = product;
     }

@@ -1,6 +1,6 @@
 package com.example.store.service;
-import com.example.store.dto.Login;
-import com.example.store.dto.ProductDto;
+import com.example.store.dto.request.LoginDto;
+import com.example.store.dto.request.ProductDto;
 import com.example.store.entity.ActivityHistory;
 import com.example.store.entity.Category;
 import com.example.store.entity.Product;
@@ -50,7 +50,7 @@ public class ProductService {
     }
 
 
-    public List<Product> findAllProductCategory(Integer categoryId,Login login) throws Exception {
+    public List<Product> findAllProductCategory(Integer categoryId, LoginDto login) throws Exception {
         acitvityHistoryRepository.save(new ActivityHistory(login.getEmail(),"user has viewed product of "+categoryId));
         Optional<Product> optionalProduct=productRepository.findById(categoryId);
         if(!optionalProduct.isPresent()){

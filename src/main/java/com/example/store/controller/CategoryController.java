@@ -1,16 +1,14 @@
 package com.example.store.controller;
-
-import com.example.store.dto.Login;
-import com.example.store.entity.Category;
-import com.example.store.reponse.ApiResponse;
+import com.example.store.dto.request.LoginDto;
+import com.example.store.dto.request.CategoryDto;
+import com.example.store.dto.response.CategoryResponse;
+import com.example.store.dto.response.ApiResponse;
 import com.example.store.repository.CategoryRepository;
 import com.example.store.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/category")
@@ -22,13 +20,13 @@ public class CategoryController {
     private CategoryRepository categoryRepository;
 
     @PostMapping("/create")
-    public ResponseEntity<ApiResponse> createCategory(@RequestBody Category category){
-        categoryService.createCategory(category);
+    public ResponseEntity<ApiResponse> createCategory(@RequestBody CategoryDto categoryDto){
+        categoryService.createCategory(categoryDto);
         return new ResponseEntity<>(new ApiResponse(202, "created a new category"), HttpStatus.CREATED);
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<Category>> displayCategory(Login login){
-        return new ResponseEntity<>(categoryService.findCategory(login), HttpStatus.ACCEPTED);
+    public ResponseEntity<CategoryResponse> displayCategory(LoginDto loginDto){
+        return new ResponseEntity<>(new CategoryResponse(HttpStatus.ACCEPTED.value(),"Category list",categoryService.findCategory(loginDto)), HttpStatus.ACCEPTED);
     }
 }

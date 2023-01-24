@@ -1,6 +1,6 @@
 package com.example.store.exception;
 
-import com.example.store.reponse.ApiResponse;
+import com.example.store.dto.response.ApiResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

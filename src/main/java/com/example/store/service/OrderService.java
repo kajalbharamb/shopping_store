@@ -1,5 +1,5 @@
 package com.example.store.service;
-import com.example.store.dto.OrderDto;
+import com.example.store.dto.request.OrderDto;
 import com.example.store.entity.ActivityHistory;
 import com.example.store.entity.Product;
 import com.example.store.entity.Sales;

@@ -1,4 +1,4 @@
-package com.example.store.reponse;
+package com.example.store.dto.response;
 import lombok.*;
 import java.util.List;
 

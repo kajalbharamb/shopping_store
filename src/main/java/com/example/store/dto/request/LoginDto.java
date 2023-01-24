@@ -1,9 +1,8 @@
-package com.example.store.dto;
+package com.example.store.dto.request;
 
 import javax.validation.constraints.NotEmpty;
 
-public class Login {
-
+public class LoginDto {
     @NotEmpty(message = "Required Email")
     private String email;
     @NotEmpty(message = "Required Password")

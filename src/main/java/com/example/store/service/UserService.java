@@ -1,11 +1,13 @@
 package com.example.store.service;
-import com.example.store.dto.Login;
+import com.example.store.dto.request.LoginDto;
 import com.example.store.entity.ActivityHistory;
 import com.example.store.entity.User;
 import com.example.store.repository.AcitvityHistoryRepository;
 import com.example.store.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.validation.Valid;
 import java.util.List;
 
 @Service
@@ -42,9 +44,9 @@ public class UserService {
         return "deleted User" +id;
     }
 
-    public String loginrequired(Login login){
-        if(  userRepository.findById(login.getEmail()).get().getEmail().equals(login.getEmail())&&userRepository.findById(login.getEmail()).get().getPassword().equals(login.getPassword())){
-            acitvityHistoryRepository.save(new ActivityHistory(login.getEmail(),"User Logged IN"));
+    public String loginrequired(@Valid LoginDto loginDto){
+        if(  userRepository.findById(loginDto.getEmail()).get().getEmail().equals(loginDto.getEmail())&&userRepository.findById(loginDto.getEmail()).get().getPassword().equals(loginDto.getPassword())){
+            acitvityHistoryRepository.save(new ActivityHistory(loginDto.getEmail(),"User Logged IN"));
             return "user logged in";
         }
         else {

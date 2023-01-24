@@ -1,6 +1,6 @@
 package com.example.store.controller;
+import com.example.store.dto.response.ActivityResponse;
 import com.example.store.entity.ActivityHistory;
-import com.example.store.reponse.ActivityResponse;
 import com.example.store.service.ActivityHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/activityList")
+@RequestMapping("/activity")
 public class ActivityHistoryController {
 
     @Autowired
     private ActivityHistoryService acitivityHistoryService;
 
     @GetMapping("/list")
-    public ResponseEntity<List<ActivityHistory>> getActivityList(){
-        return new ResponseEntity<>(acitivityHistoryService.getActivityHistory(), HttpStatus.OK) ;
+    public ResponseEntity<ActivityResponse> getActivityList(){
+        return new ResponseEntity<>(new ActivityResponse(HttpStatus.OK.value(),"List of activity",acitivityHistoryService.getActivityHistory()),HttpStatus.OK);
     }
 
     @GetMapping("/list/{userId}")
-    public ResponseEntity<List<ActivityHistory>> getActivityListByUserId(@PathVariable String userId){
-        return new ResponseEntity<>(acitivityHistoryService.getActivityHistoryByUserId(userId), HttpStatus.OK) ;
+    public ResponseEntity<ActivityResponse> getActivityListByUserId(@PathVariable String userId){
+        return new ResponseEntity<>(new ActivityResponse(HttpStatus.OK.value(),"Activity list by "+userId,acitivityHistoryService.getActivityHistoryByUserId(userId)), HttpStatus.OK) ;
     }
 }
