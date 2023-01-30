@@ -1,12 +1,15 @@
 package com.example.store.dto.response;
-import lombok.*;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 public class ApiResponse {
     private int statusCode;
-    private  String message;
+    private String message;
     private List<Object> details;
 
     public ApiResponse(int statusCode, String message) {

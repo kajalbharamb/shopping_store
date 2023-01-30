@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResponse extends ApiResponse{
+public class UserResponse extends ApiResponse {
     private User user;
     private List<User> users;
 

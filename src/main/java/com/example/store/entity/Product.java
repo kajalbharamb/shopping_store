@@ -1,7 +1,9 @@
 package com.example.store.entity;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -11,6 +13,10 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "Products")
 public class Product {
+    //Many to one relationship
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
+    Category category;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Id;
@@ -24,10 +30,6 @@ public class Product {
     private long originalPrice;
     @NotNull(message = "Required Discount")
     private int discount;
-    //Many to one relationship
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id")
-    Category category;
 
     public int getDiscount() {
         return discount;

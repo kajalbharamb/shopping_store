@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SaleResponse extends ApiResponse{
+public class SaleResponse extends ApiResponse {
     private List<Sales> salesList;
 
     public SaleResponse(int statusCode, String message, List<Sales> salesList) {

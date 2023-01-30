@@ -1,4 +1,5 @@
 package com.example.store.service;
+
 import com.example.store.dto.request.LoginDto;
 import com.example.store.entity.ActivityHistory;
 import com.example.store.entity.User;
@@ -18,43 +19,43 @@ public class UserService {
     @Autowired
     private AcitvityHistoryRepository acitvityHistoryRepository;
 
-    public User addUser(User user){
+    public User addUser(User user) {
         return userRepository.save(user);
     }
 
-    public List<User> addUsers(List<User> users){
+    public List<User> addUsers(List<User> users) {
         return userRepository.saveAll(users);
     }
 
-    public List<User> getUsers(){ return userRepository.findAll(); }
+    public List<User> getUsers() {
+        return userRepository.findAll();
+    }
 
-    public User getUserById(String id){
+    public User getUserById(String id) {
         return userRepository.findById(id).orElse(null);
     }
 
-    public User getUserByName(String name){
+    public User getUserByName(String name) {
         return userRepository.findByName(name);
     }
-    public List<User> getUserByRole(String role){
+
+    public List<User> getUserByRole(String role) {
         return (List<User>) userRepository.findByRole(role);
     }
 
-    public String delete(String id){
+    public String delete(String id) {
         userRepository.deleteById(id);
-        return "deleted User" +id;
+        return "deleted User" + id;
     }
 
-    public String loginrequired(@Valid LoginDto loginDto){
-        if(  userRepository.findById(loginDto.getEmail()).get().getEmail().equals(loginDto.getEmail())&&userRepository.findById(loginDto.getEmail()).get().getPassword().equals(loginDto.getPassword())){
-            acitvityHistoryRepository.save(new ActivityHistory(loginDto.getEmail(),"User Logged IN"));
+    public String loginrequired(@Valid LoginDto loginDto) {
+        if (userRepository.findById(loginDto.getEmail()).get().getEmail().equals(loginDto.getEmail()) && userRepository.findById(loginDto.getEmail()).get().getPassword().equals(loginDto.getPassword())) {
+            acitvityHistoryRepository.save(new ActivityHistory(loginDto.getEmail(), "User Logged IN"));
             return "user logged in";
-        }
-        else {
+        } else {
             return "Access denied";
         }
     }
-
-
 
 
 }

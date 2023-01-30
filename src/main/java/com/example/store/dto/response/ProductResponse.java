@@ -11,12 +11,18 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductResponse extends ApiResponse{
+public class ProductResponse extends ApiResponse {
 
     private List<Product> allProducts;
+    private Product product;
 
     public ProductResponse(int statusCode, String message, List<Product> allProducts) {
         super(statusCode, message);
-        this.allProducts=allProducts;
+        this.allProducts = allProducts;
+    }
+
+    public ProductResponse(int statusCode, String message, Product product) {
+        super(statusCode, message);
+        this.product = product;
     }
 }

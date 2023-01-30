@@ -1,4 +1,5 @@
 package com.example.store.controller;
+
 import com.example.store.dto.request.OrderDto;
 import com.example.store.dto.response.OrderResponse;
 import com.example.store.service.OrderService;
@@ -20,10 +21,8 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping("/placeOrder")
-    private ResponseEntity<OrderResponse> placeOrder(@Valid @RequestBody OrderDto orderDto){
-            return ResponseEntity.ok(new OrderResponse(HttpStatus.ACCEPTED.value(), "Order Placed",orderService.postorder(orderDto)));
-//        OrderResponse response=orderService.postorder(orderDto);
-//        return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
+    private ResponseEntity<OrderResponse> placeOrder(@Valid @RequestBody OrderDto orderDto) {
+        return ResponseEntity.ok(new OrderResponse(HttpStatus.ACCEPTED.value(), "Order Placed", orderService.postorder(orderDto)));
     }
 
 }

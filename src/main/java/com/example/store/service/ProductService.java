@@ -1,4 +1,5 @@
 package com.example.store.service;
+
 import com.example.store.dto.request.LoginDto;
 import com.example.store.dto.request.ProductDto;
 import com.example.store.entity.ActivityHistory;
@@ -8,6 +9,7 @@ import com.example.store.repository.AcitvityHistoryRepository;
 import com.example.store.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -15,13 +17,12 @@ import java.util.Optional;
 public class ProductService {
 
     @Autowired
+    public AcitvityHistoryRepository acitvityHistoryRepository;
+    @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
-    public AcitvityHistoryRepository acitvityHistoryRepository;
-
-    public void createProduct(ProductDto productDto, Category category) {
-        Product product=new Product();
+    public Product createProduct(ProductDto productDto, Category category) {
+        Product product = new Product();
         product.setName(productDto.getName());
         product.setNoInStock(productDto.getNoInStock());
         product.setOriginalPrice(productDto.getOriginalPrice());
@@ -29,34 +30,40 @@ public class ProductService {
         product.setSellingPrice(productDto.getSellingPrice());
         product.setCategory(category);
         productRepository.save(product);
+        return product;
     }
 
-    public List<Product> findAllProducts(){
-      return productRepository.findAll();
+    public List<Product> findAllProducts() {
+        return productRepository.findAll();
     }
 
-    public void updateProduct(ProductDto productDto, Integer productId) throws Exception{
-        Optional<Product> optionalProduct=productRepository.findById(productId);
-        if (!optionalProduct.isPresent()){
+    public Product updateProduct(ProductDto productDto, Integer productId) throws Exception {
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+        if (!optionalProduct.isPresent()) {
             throw new Exception("product not found");
         }
-            Product product=optionalProduct.get();
-            product.setName(productDto.getName());
-            product.setNoInStock(productDto.getNoInStock());
-            product.setOriginalPrice(productDto.getOriginalPrice());
-            product.setDiscount(productDto.getDiscount());
-            product.setSellingPrice(productDto.getSellingPrice());
-            productRepository.save(product);
+        Product product = optionalProduct.get();
+        product.setName(productDto.getName());
+        product.setNoInStock(productDto.getNoInStock());
+        product.setOriginalPrice(productDto.getOriginalPrice());
+        product.setDiscount(productDto.getDiscount());
+        product.setSellingPrice(productDto.getSellingPrice());
+        productRepository.save(product);
+        return product;
     }
 
 
     public List<Product> findAllProductCategory(Integer categoryId, LoginDto login) throws Exception {
-        acitvityHistoryRepository.save(new ActivityHistory(login.getEmail(),"user has viewed product of "+categoryId));
-        Optional<Product> optionalProduct=productRepository.findById(categoryId);
-        if(!optionalProduct.isPresent()){
+        acitvityHistoryRepository.save(new ActivityHistory(login.getEmail(), "User has viewed product of " + categoryId));
+        Optional<Product> optionalProduct = productRepository.findById(categoryId);
+        if (!optionalProduct.isPresent()) {
             throw new Exception(" No product found with this categoryId");
         }
         return productRepository.findProductByCategory(categoryId);
+    }
+
+    public boolean existByGetId(int id) {
+        return productRepository.existsById(id);
     }
 
 }

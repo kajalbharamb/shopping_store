@@ -1,4 +1,5 @@
 package com.example.store.controller;
+
 import com.example.store.dto.response.SaleResponse;
 import com.example.store.service.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class SalesController {
     private SalesService salesService;
 
     @GetMapping("/list")
-    public ResponseEntity<SaleResponse> getSales(){
+    public ResponseEntity<SaleResponse> getSales() {
         return new ResponseEntity<>(new SaleResponse(HttpStatus.ACCEPTED.value(), "Sales list", salesService.getListOfSales()), HttpStatus.ACCEPTED);
     }
 
