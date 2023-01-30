@@ -16,13 +16,13 @@ import java.util.List;
 @ControllerAdvice
 public class CustomException extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    public final ResponseEntity<Object> handleAllExceptions(Exception e, WebRequest request) {
-        List<Object> details = new ArrayList<>();
-        details.add(e.getLocalizedMessage());
-        ApiResponse response = new ApiResponse(HttpStatus.SERVICE_UNAVAILABLE.value(), "Server Error", details);
-        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+//    @ExceptionHandler(Exception.class)
+//    public final ResponseEntity<Object> handleAllExceptions(Exception e, WebRequest request) {
+//        List<Object> details = new ArrayList<>();
+//        details.add(e.getLocalizedMessage());
+//        ApiResponse response = new ApiResponse(HttpStatus.SERVICE_UNAVAILABLE.value(), "Server Error");
+//        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException e,
                                                                   HttpHeaders headers,

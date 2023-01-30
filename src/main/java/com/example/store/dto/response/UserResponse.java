@@ -1,9 +1,15 @@
 package com.example.store.dto.response;
 
 import com.example.store.entity.User;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserResponse extends ApiResponse{
     private User user;
     private List<User> users;

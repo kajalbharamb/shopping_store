@@ -3,6 +3,7 @@ import com.example.store.dto.request.LoginDto;
 import com.example.store.dto.request.CategoryDto;
 import com.example.store.dto.response.CategoryResponse;
 import com.example.store.dto.response.ApiResponse;
+import com.example.store.entity.Category;
 import com.example.store.repository.CategoryRepository;
 import com.example.store.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,9 @@ public class CategoryController {
     private CategoryRepository categoryRepository;
 
     @PostMapping("/create")
-    public ResponseEntity<ApiResponse> createCategory(@RequestBody CategoryDto categoryDto){
-        categoryService.createCategory(categoryDto);
-        return new ResponseEntity<>(new ApiResponse(202, "created a new category"), HttpStatus.CREATED);
+    public ResponseEntity<ApiResponse> createCategory(@RequestBody Category category){
+        categoryService.createCategory(category);
+        return new ResponseEntity<>(new ApiResponse(HttpStatus.CREATED.value(), "created a new category"), HttpStatus.CREATED);
     }
 
     @GetMapping("/list")

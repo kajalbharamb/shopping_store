@@ -1,14 +1,15 @@
 package com.example.store.dto.request;
 import lombok.*;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Getter
-@Setter
 public class ProductDto {
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @NotNull(message = "Required categoryId")
     private Integer categoryId;

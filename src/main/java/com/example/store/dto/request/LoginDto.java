@@ -1,7 +1,14 @@
 package com.example.store.dto.request;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.NotEmpty;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class LoginDto {
     @NotEmpty(message = "Required Email")
     private String email;

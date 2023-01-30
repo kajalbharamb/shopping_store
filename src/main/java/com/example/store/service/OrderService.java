@@ -1,4 +1,5 @@
 package com.example.store.service;
+
 import com.example.store.dto.request.OrderDto;
 import com.example.store.entity.ActivityHistory;
 import com.example.store.entity.Product;
@@ -7,11 +8,17 @@ import com.example.store.repository.AcitvityHistoryRepository;
 import com.example.store.repository.OrderRepository;
 import com.example.store.repository.ProductRepository;
 import com.example.store.repository.SalesRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.aspectj.bridge.IMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
@@ -25,36 +32,33 @@ public class OrderService {
     @Autowired
     private AcitvityHistoryRepository acitvityHistoryRepository;
 
-    public Product postorder(OrderDto orderDto) {
-        Optional<Product> Product=productRepository.findById(orderDto.getProductId());
-        Product product=Product.get();
-        int currentStock = product.getNoInStock() - orderDto.getQuantity();
-        if(currentStock>0){
-            updateStock(product,currentStock);
-            sales(orderDto,product);
-        acitvityHistoryRepository.save(new ActivityHistory(orderDto.getUserId(),"user has order the product"+product.getName()));
+    public Product postorder(OrderDto orderDto) throws ResponseStatusException{
+        Optional<Product> optionalProduct = productRepository.findById(orderDto.getProductId());
+        if (optionalProduct.isPresent()) {
+
+            Product product = optionalProduct.get();
+            int currentStock = product.getNoInStock() - orderDto.getQuantity();
+            if (currentStock >= 0) {
+                Product product1 = updateStock(product, currentStock);
+                Sales sales = Sales.builder().productName(product1.getName()).userId(orderDto.getUserId()).
+                        productSellingPrice((int) product1.getSellingPrice()).productId(product1.getId()).soldStock(product1.getNoInStock()).
+                        build();
+                salesRepository.save(sales);
+                acitvityHistoryRepository.save(new ActivityHistory(orderDto.getUserId(), "User has order the product" + product.getName()));
+                return product;
+            }
+            else{
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Cannot order! stock not available");
+            }
         }
-        return product;
-    }
+        else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cannot order!");
+}
+        }
 
-    public void updateStock(Product product,int currentStock){
-        product.setName(product.getName());
+    public Product updateStock(Product product, int currentStock) {
         product.setNoInStock(currentStock);
-        product.setOriginalPrice(product.getOriginalPrice());
-        product.setDiscount(product.getDiscount());
-        product.setSellingPrice(product.getSellingPrice());
-        productRepository.save(product);
-    }
-
-    public void sales(OrderDto orderDto,Product product){
-        Sales sales=new Sales();
-        sales.setProductId(orderDto.getProductId());
-        sales.setUserId(orderDto.getUserId());
-        sales.setSoldStock(orderDto.getQuantity());
-        sales.setProductName(product.getName());
-        sales.setProductSellingPrice((int) product.getSellingPrice());
-        salesRepository.save(sales);
-
+        return productRepository.save(product);
     }
 }
 

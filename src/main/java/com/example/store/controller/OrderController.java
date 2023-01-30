@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/order")
 public class OrderController {
@@ -18,8 +20,10 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping("/placeOrder")
-    private ResponseEntity<OrderResponse> placeOrder(@RequestBody OrderDto orderDto){
-        return new ResponseEntity<>(new OrderResponse(HttpStatus.ACCEPTED.value(),"Order Placed",orderService.postorder(orderDto)),HttpStatus.ACCEPTED);
+    private ResponseEntity<OrderResponse> placeOrder(@Valid @RequestBody OrderDto orderDto){
+            return ResponseEntity.ok(new OrderResponse(HttpStatus.ACCEPTED.value(), "Order Placed",orderService.postorder(orderDto)));
+//        OrderResponse response=orderService.postorder(orderDto);
+//        return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
     }
 
 }

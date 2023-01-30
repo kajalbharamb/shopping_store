@@ -2,8 +2,6 @@ package com.example.store.dto.response;
 import lombok.*;
 import java.util.List;
 
-@Getter
-@Setter
 @Data
 @NoArgsConstructor
 public class ApiResponse {
@@ -21,6 +19,7 @@ public class ApiResponse {
         this.message = message;
         this.details = details;
     }
+
 
     public int getStatusCode() {
         return statusCode;

@@ -7,8 +7,6 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Getter
-@Setter
 @Table(name = "Orders")
 public class Order {
 

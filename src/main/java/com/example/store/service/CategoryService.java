@@ -1,6 +1,7 @@
 package com.example.store.service;
-import com.example.store.dto.request.LoginDto;
 import com.example.store.dto.request.CategoryDto;
+import com.example.store.dto.request.LoginDto;
+import com.example.store.dto.response.CategoryResponse;
 import com.example.store.entity.ActivityHistory;
 import com.example.store.entity.Category;
 import com.example.store.repository.AcitvityHistoryRepository;
@@ -16,10 +17,10 @@ public class CategoryService {
     @Autowired
     private AcitvityHistoryRepository acitvityHistoryRepository;
 
-    public void createCategory(CategoryDto category){
-
-        categoryRepository.save(category);
+    public Category createCategory(Category category){
+        return categoryRepository.save(category);
     }
+
     public List<Category> findCategory(LoginDto loginDto)
     {
         acitvityHistoryRepository.save(new ActivityHistory(loginDto.getEmail(),"User had viewed category List"));
