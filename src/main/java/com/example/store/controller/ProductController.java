@@ -54,9 +54,5 @@ public class ProductController {
         return new ResponseEntity<>(new ProductResponse(HttpStatus.OK.value(), "List of products ", productService.findAllProducts()), HttpStatus.OK);
     }
 
-    @GetMapping("/listByCategory/{categoryId}")
-    public ResponseEntity<ProductResponse> getProductByCategory(@PathVariable Integer categoryId, @RequestBody LoginDto loginDto) throws Exception {
-        return new ResponseEntity<>(new ProductResponse(HttpStatus.ACCEPTED.value(), "Product of particular category", productService.findAllProductCategory(categoryId, loginDto)), HttpStatus.ACCEPTED);
-    }
 
 }

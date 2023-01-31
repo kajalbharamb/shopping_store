@@ -52,16 +52,6 @@ public class ProductService {
         return product;
     }
 
-
-    public List<Product> findAllProductCategory(Integer categoryId, LoginDto login) throws Exception {
-        acitvityHistoryRepository.save(new ActivityHistory(login.getEmail(), "User has viewed product of " + categoryId));
-        Optional<Product> optionalProduct = productRepository.findById(categoryId);
-        if (!optionalProduct.isPresent()) {
-            throw new Exception(" No product found with this categoryId");
-        }
-        return productRepository.findProductByCategory(categoryId);
-    }
-
     public boolean existByGetId(int id) {
         return productRepository.existsById(id);
     }
