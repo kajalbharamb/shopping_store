@@ -10,4 +10,5 @@ import java.util.List;
 public interface AcitvityHistoryRepository extends JpaRepository<ActivityHistory, Integer> {
 
     List<ActivityHistory> findHistoryByUserId(String userId);
+
 }

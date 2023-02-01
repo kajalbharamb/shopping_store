@@ -18,7 +18,6 @@ public class ProductDto {
     private Integer categoryId;
     @NotNull(message = "Required Product Name")
     private String name;
-    @NotNull(message = "Required Selling Price")
     private long sellingPrice;
     @NotNull(message = "Required NoInStock")
     private int noInStock;
@@ -26,5 +25,13 @@ public class ProductDto {
     private long originalPrice;
     @NotNull(message = "Required Discount")
     private int discount;
+
+    public long getSellingPrice(){
+        return (getOriginalPrice()-((getOriginalPrice()*getDiscount())/100));
+    }
+
+    public void setSellingPrice(long sellingprice){
+        sellingPrice=(getOriginalPrice()-((getOriginalPrice()*getDiscount())/100));
+    }
 
 }

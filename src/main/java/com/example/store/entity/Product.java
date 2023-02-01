@@ -56,11 +56,11 @@ public class Product {
     }
 
     public long getSellingPrice() {
-        return sellingPrice;
+        return getOriginalPrice()-((getOriginalPrice()*getDiscount())/100);
     }
 
     public void setSellingPrice(long sellingprice) {
-        this.sellingPrice = sellingprice;
+        sellingprice=(getOriginalPrice()-((getOriginalPrice()*getDiscount())/100));
     }
 
     public int getNoInStock() {
@@ -75,9 +75,7 @@ public class Product {
         return originalPrice;
     }
 
-    public void setOriginalPrice(long originalPrice) {
-        this.originalPrice = originalPrice;
-    }
+    public void setOriginalPrice(long originalPrice) { this.originalPrice = originalPrice; }
 
     public Category getCategory() {
         return category;

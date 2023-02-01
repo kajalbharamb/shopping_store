@@ -34,17 +34,18 @@ public class OrderService {
     public Product postorder(OrderDto orderDto) throws ResponseStatusException {
         Optional<Product> optionalProduct = productRepository.findById(orderDto.getProductId());
         if (!optionalProduct.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cannot order!");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cannot order productId not present!");
         }
         Product product = optionalProduct.get();
         int currentStock = product.getNoInStock() - orderDto.getQuantity();
+        Product product1 = null;
         if (currentStock >= 0) {
-            Product product1 = updateStock(product, currentStock);
-            sales(product1,orderDto);
-            acitvityHistoryRepository.save(new ActivityHistory(orderDto.getUserId(), "User has order the product" + product.getName()));
+            product1 = updateStock(product, currentStock);
+            sales(product1, orderDto);
+            acitvityHistoryRepository.save(new ActivityHistory(orderDto.getUserId(),orderDto.getUserId()+" has order the product " + product.getName()));
             return product;
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cannot order! stock not available");
+            throw new ResponseStatusException(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS, "Cannot order! insufficient stock. Product available " + product.getNoInStock());
         }
     }
 

@@ -32,7 +32,7 @@ public class ProductController {
         if (!optionalCategory.isPresent()) {
             return new ResponseEntity<>(new ProductResponse(HttpStatus.BAD_REQUEST.value(), " Category does not exist", productService.createProduct(productDto, optionalCategory.get())), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(new ProductResponse(HttpStatus.BAD_REQUEST.value(), " Product has been Added ", productService.createProduct(productDto, optionalCategory.get())), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(new ProductResponse(HttpStatus.CREATED.value(), " Product has been Added ", productService.createProduct(productDto, optionalCategory.get())), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/update/{productId}")
@@ -51,7 +51,7 @@ public class ProductController {
     @GetMapping("/list")
     public ResponseEntity<ProductResponse> getProducts() {
 
-        return new ResponseEntity<>(new ProductResponse(HttpStatus.OK.value(), "List of products ", productService.findAllProducts()), HttpStatus.OK);
+        return new ResponseEntity<>(new ProductResponse(HttpStatus.ACCEPTED.value(),"List of products ", productService.findAllProducts()), HttpStatus.OK);
     }
 
 
